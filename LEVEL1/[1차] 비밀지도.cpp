@@ -29,12 +29,6 @@ vector<string> solution(int n, vector<int> arr1, vector<int> arr2) {
     }
 
     for (int i=0; i<n; ++i) {
-        for (int j=0; j<n; ++j) {
-            cout << map[i][j] << " ";
-        } cout << endl;
-    }
-
-    for (int i=0; i<n; ++i) {
         string str = "";
         for (int j=0; j<n; ++j) {
             if (map[i][j] != 0) {
