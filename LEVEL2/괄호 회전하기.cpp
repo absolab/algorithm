@@ -27,10 +27,6 @@ int solution(string s) {
             else v.push_back(c);
         }
 
-        for (int i=0; i<v.size(); ++i) {
-            cout << v[i];
-        } cout << endl;
-
         if (v.size() == 0) answer++;
         char c = s[0];
         s = s.substr(1,s.size());
