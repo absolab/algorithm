@@ -17,12 +17,6 @@ void dfs(int pre, int length) {
     else can_dilivery[pre] = true;
 
     for (int i=1; i<=_N; ++i) {
-
-        if (pre == 3) {
-            printf("visit[%d]: %d | ", i, visit[i]);
-            printf("road_info[%d][%d]: %d \n", pre, i, road_info[pre][i]);
-        }
-
         if (visit[i] == true) continue;
         if (road_info[pre][i] == 0) continue;
 
