@@ -42,12 +42,6 @@ vector<int> solution(int n) {
         }
     }
 
-    for (int i=0; i<n; ++i) {
-        for (int j=0; j<n; ++j) {
-            cout << arr[i][j] << "|";
-        } cout << endl;
-    }
-
     for (int i=0; i<1000; ++i) {
         for (int j=0; j<1000; ++j) {
             if (arr[i][j] == 0) break;
