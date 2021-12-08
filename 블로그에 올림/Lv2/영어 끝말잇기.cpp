@@ -16,14 +16,14 @@ vector<int> solution(int n, vector<string> words) {
     for (int i=0; i<words.size(); ++i) {
 
         if (my_map.find(words[i]) != my_map.end()) {
-            // Å»¶ô!
+            // íƒˆë½!
             answer.push_back(user + 1);
             answer.push_back(i/n + 1);
             break;
         }
 
         if (pre_c != '1' && pre_c != words[i][0]) {
-            // Å»¶ô!
+            // íƒˆë½!
             answer.push_back(user + 1);
             answer.push_back(i/n + 1);
             break;
