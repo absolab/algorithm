@@ -7,11 +7,11 @@ using namespace std;
 
 vector<string> solution(vector<string> record) {
 
-    map<string, string> names;      // <À¯Àú¾ÆÀÌµğ, ´Ğ³×ÀÓ>
+    map<string, string> names;      // <ìœ ì €ì•„ì´ë””, ë‹‰ë„¤ì„>
     vector<string> answer;
 
-    // ¹®ÀÚ¿­ ºĞ¸®
-    vector<vector<string>> my_record;   // ºĞ¸®ÇÑ ¹®ÀÚ¿­À» ÀúÀåÇÒ °ø°£
+    // ë¬¸ìì—´ ë¶„ë¦¬
+    vector<vector<string>> my_record;   // ë¶„ë¦¬í•œ ë¬¸ìì—´ì„ ì €ì¥í•  ê³µê°„
 
     for (int i=0; i<record.size(); ++i) {
         vector<string> div;
@@ -30,29 +30,29 @@ vector<string> solution(vector<string> record) {
         my_record.push_back(div);
     }
 
-    // »ç¶÷µéÀÇ ¾ÆÀÌµğ¿Í ÃÖÁ¾ ´Ğ³×ÀÓ ÀúÀå
+    // ì‚¬ëŒë“¤ì˜ ì•„ì´ë””ì™€ ìµœì¢… ë‹‰ë„¤ì„ ì €ì¥
     for (int i=0; i<my_record.size(); ++i) {
 
         if (my_record[i][0] == "Enter" || my_record[i][0] == "Change") {
-            // Å°¿Í °ª Ãß°¡ or ÀÌ¹Ì Å° °ªÀÌ ÀÖÀ¸¸é ¾÷µ¥ÀÌÆ®
+            // í‚¤ì™€ ê°’ ì¶”ê°€ or ì´ë¯¸ í‚¤ ê°’ì´ ìˆìœ¼ë©´ ì—…ë°ì´íŠ¸
             if ((names.insert(make_pair(my_record[i][1], my_record[i][2]))).second == false) {
                 names[my_record[i][1]] = my_record[i][2];
             }
         }
     }
 
-    // Enter, Leave¿¡ µû¸¥ ¹®ÀÚ¿­ Ãâ·Â
+    // Enter, Leaveì— ë”°ë¥¸ ë¬¸ìì—´ ì¶œë ¥
     for (int i=0; i<my_record.size(); ++i) {
 
         string str;
 
         if (my_record[i][0] == "Enter") {
             str = names[my_record[i][1]];
-            str += "´ÔÀÌ µé¾î¿Ô½À´Ï´Ù.";
+            str += "ë‹˜ì´ ë“¤ì–´ì™”ìŠµë‹ˆë‹¤.";
             answer.push_back(str);
         } else if (my_record[i][0] == "Leave") {
             str = names[my_record[i][1]];
-            str += "´ÔÀÌ ³ª°¬½À´Ï´Ù.";
+            str += "ë‹˜ì´ ë‚˜ê°”ìŠµë‹ˆë‹¤.";
             answer.push_back(str);
         }
     }
