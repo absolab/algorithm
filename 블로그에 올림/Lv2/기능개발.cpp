@@ -1,5 +1,4 @@
 #include <vector>
-#include <string>
 #include <iostream>
 
 using namespace std;
@@ -12,10 +11,13 @@ vector<int> solution(vector<int> progresses, vector<int> speeds) {
 
     while(pos < progresses.size()) {
 
-        int count = 0;
-        int i=pos;
+        int count = 0;      // 한꺼번에 배포되는 수
+        int i=pos;          
+
+        // 시작점 부터 연속으로 진행도가 100 이상을 찾음
         for (; i<progresses.size(); ++i) {
 
+            // 진행도가 100 이상인 경우
             if (progresses[i] + speeds[i] * date >= 100) {
 
                 ++count;
@@ -26,14 +28,16 @@ vector<int> solution(vector<int> progresses, vector<int> speeds) {
             }
         }
 
+        // 시작점 업데이트
         pos = i;
 
+        // 배포된게 있으면 한꺼번에 배포된 수 추가
         if (count != 0) {
 
             answer.push_back(count);
         }
 
-        date++;
+        ++date;
     }
 
     return answer;
