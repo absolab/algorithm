@@ -33,7 +33,7 @@ void dfs(int start) {
             }
         }
 
-        // 2°³ ÀÌ»óÀÌ¸é ÄÚ½º ÈÄº¸ Ãß°¡
+        // 2ê°œ ì´ìƒì´ë©´ ì½”ìŠ¤ í›„ë³´ ì¶”ê°€
         if (max_menu[length] <= count && count >= 2) {
             if (max_menu[length] < count) {
                 course_menu[length].clear();
@@ -61,31 +61,35 @@ vector<string> solution(vector<string> orders, vector<int> course) {
     vector<string> answer;
     _orders = orders;
 
-    // ÁÖ¹®µÈ ¸Ş´º Ã¼Å©
+    // ì£¼ë¬¸ëœ ë©”ë‰´ ì²´í¬
     bool checked_menu[26] = {0, };
     for (int i=0; i<_orders.size(); ++i) {
         for (int j=0; j<_orders[i].size(); ++j) {
             checked_menu[_orders[i][j] - 'A'] = true;
         }
     }
-    // ÁÖ¹®µÈ ¸Ş´º¸¸ µû·Î º¤ÅÍ¿¡ ³Ö±â
+
+    // ì£¼ë¬¸ëœ ë©”ë‰´ë§Œ ë”°ë¡œ ë²¡í„°ì— ë„£ê¸°
     for (int i=0; i<26; ++i) {
         if (checked_menu[i]) {
             menu.push_back('A' + i);
         }
     } 
-    // 1Â÷ ÄÚ½º ÈÄº¸ ÀúÀå
+
+    // 1ì°¨ ì½”ìŠ¤ í›„ë³´ ì €ì¥
     for (int i=0; i<course.size(); ++i) {
         length = course[i];
         dfs(-1);
     }
-    // ÃÖÁ¾ ÄÚ½º ÈÄº¸ ÀúÀå
+    
+    // ìµœì¢… ì½”ìŠ¤ í›„ë³´ ì €ì¥
     for (int i=0; i<course_menu.size(); ++i) {
         for (int j=0; j<course_menu[i].size(); ++j) {
             answer.push_back(course_menu[i][j]);
         }
     }
-    // ¿À¸§Â÷¼ø Á¤·Ä
+
+    // ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬
     sort(answer.begin(), answer.end());
 
     return answer;
