@@ -16,6 +16,8 @@ int length;
 void dfs(int start) {
 
     if (v.size() == length) {
+
+        // 주문된 수 확인
         int count = 0;
         for (int i=0; i<_orders.size(); ++i) {
             string str = _orders[i];
@@ -33,7 +35,7 @@ void dfs(int start) {
             }
         }
 
-        // 2개 이상이면 코스 후보 추가
+        // 두 번 이상 주문 됐으면 코스 후보 추가
         if (max_menu[length] <= count && count >= 2) {
             if (max_menu[length] < count) {
                 course_menu[length].clear();
