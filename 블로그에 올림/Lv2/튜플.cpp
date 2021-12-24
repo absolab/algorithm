@@ -5,8 +5,9 @@
 #include <algorithm>
 using namespace std;
 
-bool dp[100001];
+bool visit[100001];
 
+// sortì˜ ë¹„êµ í•¨ìˆ˜
 bool compare(vector<int> i, vector<int> j) {
     return i.size() < j.size();
 }
@@ -15,7 +16,7 @@ vector<int> solution(string s) {
 
     vector<int> answer;
 
-    // 1Â÷ ºĞ¸®
+    // 1ì°¨ ë¶„ë¦¬ (ì¤‘ê´„í˜¸, ì¤‘ê´„í˜¸ ì‚¬ì´ ì½¤ë§ˆ ì œê±°)
     vector<string> sep;
     int sep_pos = 2;
     for (int i=3; i<s.size()-1; ++i) {
@@ -23,11 +24,11 @@ vector<int> solution(string s) {
         if (c == '}') {
             sep.push_back(s.substr(sep_pos, i - sep_pos));
             sep_pos = i + 3;
-            i += 3;
+            i += 3;     // '},{' 3ê°œë¥¼ ë›°ì–´ë„˜ìŒ
         }
     }
 
-    // Á¤¼öÇü ¹è¿­·Î º¯°æ
+    // ì •ìˆ˜í˜• ë°°ì—´ë¡œ ë³€ê²½
     vector<vector<int>> v;
     for (int i=0; i<sep.size(); ++i) {
         string temp_str = sep[i];
@@ -42,15 +43,16 @@ vector<int> solution(string s) {
         } v[i].push_back(stoi(temp_str.substr(pre_c_pos, temp_str.size() - pre_c_pos)));
     }
 
-    // ¿ø¼ÒÀÇ °³¼ö ¼øÀ¸·Î Á¤·Ä
+    // ì›ì†Œì˜ ê°œìˆ˜ ìˆœìœ¼ë¡œ ì •ë ¬
     sort(v.begin(), v.end(), compare);
 
+    // ì²˜ìŒ ë‚˜ì˜¨ ìˆ«ì ì¶”ê°€
     for (int i=0; i<v.size(); ++i) {
 
         for (int j=0; j<v[i].size(); ++j) {
 
-            if (dp[v[i][j]] == false) {
-                dp[v[i][j]] = true;
+            if (visit[v[i][j]] == false) {
+                visit[v[i][j]] = true;
                 answer.push_back(v[i][j]);
                 break;
             }
