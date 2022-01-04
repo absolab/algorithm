@@ -8,6 +8,7 @@ int solution(string name) {
 
     int answer = 0;
 
+    // 각 알파벳을 만드는 클릭 수
     for (int i=0; i<name.size(); ++i) {
         int num1 = name[i] - 'A';
         int num2 = 'Z' + 1 - name[i];
@@ -15,7 +16,7 @@ int solution(string name) {
         answer += num3;
     }
 
-    // 1. 왼쪽으로 탐색
+    // 1. 커서를 왼쪽으로 이동하는 경우
     int move_left = 0;
     int temp = 0;
     for (int i=name.size()-1; i>=1; --i) {
@@ -27,7 +28,7 @@ int solution(string name) {
         }
     }
 
-    // 2. 오른쪽으로 탐색
+    // 2. 커서를 오른쪽으로 이동하는 경우
     int move_right = 0;
     temp = 0;
     for (int i=1; i<name.size(); ++i) {
@@ -40,7 +41,7 @@ int solution(string name) {
     }
 
     name[0] = 'A';
-    // 3. 오른쪽으로 가다가 왼쪽으로 탐색
+    // 3. 커서를 오른쪽으로 가다가 왼쪽으로 이동하는 경우
     int move_right_and_left = 999;
     // 꺾는 위치
     for (int i=1; i<name.size(); ++i) {
@@ -58,6 +59,10 @@ int solution(string name) {
         if (move_right_and_left > move) move_right_and_left = move;
     }
 
+    // 4. 커서를 왼쪽으로 갔다가 오른쪽으로 이동하는 경우
+    // >> 오른쪽 끝에서 왼쪽 끝으로 이동 불가!
+
+    // 최솟값 도출
     int min = move_left;
     if (min > move_right) min = move_right;
     if (min > move_right_and_left) min = move_right_and_left;
