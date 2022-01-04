@@ -15,7 +15,7 @@ int solution(string name) {
         answer += num3;
     }
 
-    // 1. ¿ŞÂÊÀ¸·Î Å½»ö
+    // 1. ì™¼ìª½ìœ¼ë¡œ íƒìƒ‰
     int move_left = 0;
     int temp = 0;
     for (int i=name.size()-1; i>=1; --i) {
@@ -27,7 +27,7 @@ int solution(string name) {
         }
     }
 
-    // 2. ¿À¸¥ÂÊÀ¸·Î Å½»ö
+    // 2. ì˜¤ë¥¸ìª½ìœ¼ë¡œ íƒìƒ‰
     int move_right = 0;
     temp = 0;
     for (int i=1; i<name.size(); ++i) {
@@ -40,9 +40,9 @@ int solution(string name) {
     }
 
     name[0] = 'A';
-    // 3. ¿À¸¥ÂÊÀ¸·Î °¡´Ù°¡ ¿ŞÂÊÀ¸·Î Å½»ö
+    // 3. ì˜¤ë¥¸ìª½ìœ¼ë¡œ ê°€ë‹¤ê°€ ì™¼ìª½ìœ¼ë¡œ íƒìƒ‰
     int move_right_and_left = 999;
-    // ²ª´Â À§Ä¡
+    // êº¾ëŠ” ìœ„ì¹˜
     for (int i=1; i<name.size(); ++i) {
         int move = 0;
         move = i + i;
