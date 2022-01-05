@@ -37,6 +37,7 @@ void bfs() {
         int depth = q.front().depth;
         q.pop();
 
+        // 적 진영 도착
         if (x == my_maps.size()-1 && y == my_maps[0].size()-1) {
             min_path = (min_path < depth) ? min_path : depth;
             return;
@@ -44,12 +45,12 @@ void bfs() {
 
         for (int i=0; i<4; ++i) {
 
-            // out of range
+            // 범위 벗어나면 패스
             if (x + dx[i] < 0 || x + dx[i] >= my_maps.size()) continue;
             if (y + dy[i] < 0 || y + dy[i] >= my_maps[0].size()) continue;
-            // is wall?
+            // 벽이면 패스
             if (my_maps[x+dx[i]][y+dy[i]] == 0) continue;
-
+            // 갔던 곳이면 패스
             if (check[x+dx[i]][y+dy[i]] == true) continue;
 
             check[x+dx[i]][y+dy[i]] = true;
@@ -65,6 +66,7 @@ int solution(vector<vector<int>> maps) {
 
     bfs();
 
+    // 도착이 불가하면 -1 반환
     answer = (min_path != 9999999) ? min_path : -1;
 
     return answer;
