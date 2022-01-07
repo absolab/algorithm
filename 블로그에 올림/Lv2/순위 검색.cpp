@@ -17,43 +17,44 @@ vector<int> solution(vector<string> info, vector<string> query) {
     vector<pair<int,int>> my_info;
     vector<pair<int,int>> my_query;
 
+    // info를 정수로 변환
     for (int i=0; i<info.size(); ++i) {
         int idx = 0;
         string str = info[i];
 
         int num = 0;
 
-        if (str[idx] == 'c') {
+        if (str[idx] == 'c') {          // cpp      001
             num += 1;
             idx = 4;
-        } else if (str[idx] == 'j') {
+        } else if (str[idx] == 'j') {   // java     010
             num += 2; 
             idx = 5;
-        } else {
+        } else {                        // python   100
             num += 4;
             idx = 7;
         }
 
-        if (str[idx] == 'b') {
+        if (str[idx] == 'b') {          // backend  01 000
             num += 8;
             idx += 8;
-        } else {
+        } else {                        // frontend 10 000
             num += 16;
             idx += 9;
         }
 
-        if (str[idx] == 'j') {
+        if (str[idx] == 'j') {          // junior   01 00 000
             num += 32;
             idx += 7;
-        } else {
+        } else {                        // senior   10 00 000
             num += 64;
             idx += 7;
         }
 
-        if (str[idx] == 'c') {
+        if (str[idx] == 'c') {          // chiken   01 00 00 000
             num += 128;
             idx += 8;
-        } else {
+        } else {                        // pizza    10 00 00 000
             num += 256;
             idx += 6;
         }
@@ -62,6 +63,7 @@ vector<int> solution(vector<string> info, vector<string> query) {
         my_info.push_back(make_pair(num, score));
     }
 
+    // query도 똑같이 변환
     for (int i=0; i<query.size(); ++i) {
         int idx = 0;
         string str = query[i];
@@ -120,6 +122,7 @@ vector<int> solution(vector<string> info, vector<string> query) {
         my_query.push_back(make_pair(num, score));
     }
 
+    // 검색
     for (int i=0; i<my_query.size(); ++i) {
 
         int satisfied_count = 0;
