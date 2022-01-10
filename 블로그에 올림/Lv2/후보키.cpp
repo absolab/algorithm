@@ -13,43 +13,21 @@ int depth;
 
 vector<int> v;
 bool visited[8];
+int value[] = {1, 2, 4, 8, 16, 32, 64, 128};
 vector<int> candidate_key;
 
 void dfs() {
     
     if (v.size() == depth) {
         
+        // 선택한 column을 표시
         bool is_candidate_key = true;
         int key = 0;
         for (int i=0; i<v.size(); ++i) {
-            switch (v[i]) {
-            case 0:
-                key += 1;
-                break;
-            case 1:
-                key += 2;
-                break;
-            case 2:
-                key += 4;
-                break;
-            case 3:
-                key += 8;
-                break;
-            case 4:
-                key += 16;
-                break;
-            case 5:
-                key += 32;
-                break;
-            case 6:
-                key += 64;
-                break;
-            case 7:
-                key += 128;
-                break;
-            }
+            key += value[v[i]];
         }
 
+        // 최소성: 키 안에 후보키를 갖고 있으면 후보키가 될 수 없음
         bool is_already_candidate_key = false;
         for (int i=0; i<candidate_key.size(); ++i) {
             if ((key & candidate_key[i]) == candidate_key[i]) {
@@ -58,6 +36,7 @@ void dfs() {
         }
         if (is_already_candidate_key == true) return;
 
+        // 유일성: 중복 되는 값이 없어야 함
         map<string,int> check_dup;
         for (int i=0; i<_relation.size(); ++i) {
             string my_tuple = "";
@@ -74,6 +53,7 @@ void dfs() {
             }
         }
 
+        // 모든 조건을 만족하면 후보키 목록에 추가
         if (is_candidate_key == true) {
             answer++;
             candidate_key.push_back(key);
@@ -97,6 +77,7 @@ int solution(vector<vector<string>> relation) {
     _relation = relation;
     max_columns = relation[0].size();
 
+    // 칼럼의 개수
     while(depth <= max_columns) {
         dfs();
         ++depth;
