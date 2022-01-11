@@ -10,8 +10,9 @@ int solution(string s) {
 
     for (int i=0; i<s.size(); ++i) {
         
-        vector<char> v;
+        vector<char> v;     // 스택처럼 사용
 
+        // 올바른 괄호 문자열인지 확인
         for (int j=0; j<s.size(); ++j) {
             if (v.size() == 0) {
                 v.push_back(s[j]);
@@ -28,6 +29,8 @@ int solution(string s) {
         }
 
         if (v.size() == 0) answer++;
+
+        // 왼쪽으로 한 칸 회전
         char c = s[0];
         s = s.substr(1,s.size());
         s += c;
