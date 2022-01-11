@@ -13,8 +13,10 @@ bool can_dilivery[51];
 
 void dfs(int pre, int length) {
 
+    // 오래걸리는 길이면 버린다
     if (length > _K) return;
-    else can_dilivery[pre] = true;
+    
+    can_dilivery[pre] = true;
 
     for (int i=1; i<=_N; ++i) {
         if (visit[i] == true) continue;
@@ -30,9 +32,11 @@ int solution(int N, vector<vector<int>> road, int K) {
 
     int answer = 0;
 
+    // 입력값 전역으로
     _N = N;
     _K = K;
 
+    // 시작점
     visit[1] = true;
 
     for (int i=0; i<road.size(); ++i) {
@@ -40,6 +44,7 @@ int solution(int N, vector<vector<int>> road, int K) {
         int b = road[i][1];
         int c = road[i][2];
 
+        // 두 마을의 거리를 최솟값으로 설정
         if (road_info[a][b] != 0) {
             c = (road_info[a][b] < c) ? road_info[a][b] : c;
         }
