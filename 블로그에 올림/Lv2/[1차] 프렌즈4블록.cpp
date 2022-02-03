@@ -9,10 +9,11 @@ int solution(int m, int n, vector<string> board) {
     int answer = 0;
 
     bool is_deleted = false;
+    
     do {
         is_deleted = false;
 
-        // »ç°¢Çü Ã£±â
+        // ì‚¬ê°í˜• ì°¾ê¸°
         vector<pair<int,int>> square;
         for (int i=0; i<m-1; ++i) {
             for (int j=0; j<n-1; ++j) {
@@ -31,13 +32,14 @@ int solution(int m, int n, vector<string> board) {
                 }            
             }
         }
-        // Áö¿ì±â
+
+        // ì§€ìš°ê¸°
         for (int i=0; i<square.size(); ++i) {
             board[square[i].first][square[i].second] = '-';
             is_deleted = true;
         }
 
-        // ³»¸®±â
+        // ë‚´ë¦¬ê¸°
         bool is_moved = false;
         do {
             is_moved = false;
