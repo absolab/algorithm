@@ -8,10 +8,11 @@ vector<int> solution(string s) {
 
     vector<int> answer;
 
-    int zero_count = 0;
-    int change_count = 0;
+    int zero_count = 0;         // 지운 0의 개수
+    int change_count = 0;       // 변환 횟수
 
     do {
+        // 0 지우기
         string temp = "";
         for (int i=0; i<s.size(); ++i) {
             if (s[i] == '1') {
@@ -22,6 +23,7 @@ vector<int> solution(string s) {
         }
         s = temp;
 
+        // 길이를 2진수로 변환
         temp = "";
         int num = s.size();
         while (num != 0) {
@@ -32,6 +34,8 @@ vector<int> solution(string s) {
             }
             num /= 2;
         }
+
+        // 뒤집기 (2진수 변환의 연장)
         s = "";
         for (int i=0; i<temp.size(); ++i) {
             s += temp[temp.size() - i - 1];
