@@ -6,6 +6,7 @@ using namespace std;
 
 vector<vector<int>> v;
 
+// 시작점과 크기를 입력
 pair<int,int> func (int row, int col, int size) {
 
     int num = v[row][col];
@@ -14,12 +15,13 @@ pair<int,int> func (int row, int col, int size) {
     int zero_count = 0;
     int one_count = 0;
 
+    // 1칸짜리
     if (size == 1) {
         if (num == 0) return make_pair(1, 0);
         else return make_pair(0, 1);
     }
 
-
+    // 같은 숫자로만 이루어 져 있는지 확인
     for (int i=0; i<size; ++i) {
         for (int j=0; j<size; ++j) {
 
@@ -33,12 +35,15 @@ pair<int,int> func (int row, int col, int size) {
         }
     }
 
+    // 같은 숫자
     if (check) {
         if (num == 0) {
             zero_count++;
         } else {
             one_count++;
         }
+
+    // 같은숫자 아니면 4등분
     } else {
         int new_size = size / 2;
         pair<int,int> pair[4];
