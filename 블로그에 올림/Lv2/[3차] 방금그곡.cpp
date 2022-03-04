@@ -4,7 +4,7 @@
 
 using namespace std;
 
-// #���� ���� �ҹ��ڷ� ����
+// #이 붙은 음은 소문자로 변경
 string sharptolower(string music) {
 
     string result = "";
@@ -21,6 +21,7 @@ string sharptolower(string music) {
     return result;
 }
 
+// music info를 사용할 수 있는 데이터로 변경 해줄 클래스
 class my_music {
 private:
     int full_min;
@@ -51,6 +52,7 @@ public:
     string get_name() {return name;}
     int get_min() {return full_min;}
 
+    // 음악 길이에 맞춰 총 길이로 변경
     string get_full_music() {
 
         string result = "";
@@ -69,8 +71,10 @@ string solution(string m, vector<string> musicinfos) {
     string answer = "(None)";
     int play_time = 0;
 
+    // # 변경
     m = sharptolower(m);
 
+    // 음악 찾기
     for (int i=0; i<musicinfos.size(); ++i) {
         
         my_music mm = my_music(musicinfos[i]);
@@ -79,7 +83,10 @@ string solution(string m, vector<string> musicinfos) {
         string full_music = mm.get_full_music();
 
         for (int j=0; j<music.size(); ++j) {
+            // 사이즈 벗어나면 패스
             if (j + m.size() > full_music.size()) break;
+
+            // 첫 음이 같을 때 거길 기준으로 substr을 꺼내 비교
             if (m == full_music.substr(j, m.size())) {
                 if (play_time < mm.get_min()) {
                     play_time = mm.get_min();
