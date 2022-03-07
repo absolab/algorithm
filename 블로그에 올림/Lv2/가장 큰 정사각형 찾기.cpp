@@ -4,8 +4,6 @@
 
 using namespace std;
 
-int dp[1001][1001];
-
 int solution(vector<vector<int>> board) {
 
     int answer = 0;
