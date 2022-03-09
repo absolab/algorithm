@@ -4,6 +4,7 @@
 #include <algorithm>
 using namespace std;
 
+// 파일 정보를 Head, Number, Tail로 구분하여 저장하기 위한 클래스 작성
 class my_file {
 private:
     string name = "";
@@ -52,6 +53,7 @@ public:
     }
 
 public:
+    // 정렬을 위한 비교 함수
     static bool compare(my_file file1, my_file file2) {
         if (file1.HEAD == file2.HEAD) {
             return file1.NUMBER < file2.NUMBER;
@@ -65,6 +67,7 @@ vector<string> solution(vector<string> files) {
     vector<string> answer;
 
     vector<my_file> myfile;
+
 
     for (int i=0; i<files.size(); ++i) {
         myfile.push_back(my_file(files[i]));
